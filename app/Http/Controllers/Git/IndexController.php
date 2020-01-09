@@ -14,7 +14,7 @@ class IndexController extends Controller
         {
             if($_GET['key'] === '1907weixin'){
                 $cmd = "cd /www/1907/weixin && git pull";
-                shell_exec($cmd);
+                shell_exec($cmd);   
             }
         }else{
             die("405");
