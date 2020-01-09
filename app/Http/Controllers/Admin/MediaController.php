@@ -7,15 +7,16 @@ use App\Tools\Curl;
 use App\Model\Media;
 class MediaController extends Controller
 {
+    //sdfsdf
     //素材添加
     public function add()
-    {	
+    {
         ///echo Wechat::getAccessToken();die;
         return view("media.add");
     }
 
     public function add_do(Request $request)
-    {    
+    {
         //接值
         $data = $request->input();
         //文件上传
@@ -38,14 +39,14 @@ class MediaController extends Controller
             'media_format'=>$data['media_format'],
             'media_type'=>$data['media_type'],
             'media_url'=>$path,  //素材上传地址
-            'wechat_media_id'=>$media_id, 
+            'wechat_media_id'=>$media_id,
             'add_time'=>time(),
         ]);
-      
-        
+
+
     }
 
-    
+
     public function show()
     {
         $data = Media::get()->toArray();
