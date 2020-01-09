@@ -33,5 +33,8 @@ Route::middleware([])->group(function(){
 	Route::any('channel/charts', 'Admin\ChannelController@charts');
 });
 
+// 自动上线
+Route::post('/gitpull','Git\IndexController@index');
 
-//Route::get('/wx/token','');
+
+Route::get('/wx/token','TestController@getAccessToken');
