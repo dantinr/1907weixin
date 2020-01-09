@@ -34,7 +34,7 @@ Route::middleware([])->group(function(){
 });
 
 // 自动上线
-Route::post('/gitpull','Git\IndexController@index');
+Route::post('/gitpull','Git\IndexController@index');    // test
 
 
 Route::get('/wx/token','TestController@getAccessToken');
