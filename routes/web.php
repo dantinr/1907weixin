@@ -33,8 +33,18 @@ Route::middleware([])->group(function(){
 	Route::any('channel/charts', 'Admin\ChannelController@charts');
 });
 
+
+//微信接入
+Route::get('/wx','Weixin\WxController@check');    //微信接入
+
 // 自动上线
 Route::post('/gitpull','Git\IndexController@index');    // test 项目自动上线
 
 
-Route::get('/wx/token','TestController@getAccessToken');
+Route::get('/wx/fresh_token','TestController@freshToken');    //刷新微信access_token
+Route::get('/wx/token','TestController@getAccessToken');    //获取微信access_token
+Route::get('/wx/u','TestController@getUserInfo');    //获取微信用户基本信息
+Route::get('/wx/menu','TestController@createMenu');    //创建菜单
+
+
+
