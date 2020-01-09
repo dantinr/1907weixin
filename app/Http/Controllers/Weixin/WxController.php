@@ -31,7 +31,7 @@ class WxController extends Controller
         //接收 微信推送的数据
         //$data = json_encode($_POST);
         $data = file_get_contents("php://input");
-        $log_str = date("Y-m-d H:i:s")  . $data . "\n\n"
+        $log_str = date("Y-m-d H:i:s")  . $data . "\n\n";
         file_put_contents('wx.log',$log_str,FILE_APPEND);
 
     }
