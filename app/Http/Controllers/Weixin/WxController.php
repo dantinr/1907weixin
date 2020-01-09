@@ -26,5 +26,11 @@ class WxController extends Controller
         }else{
             return false;
         }
+
+
+        //接收 微信推送的数据
+        $data = json_encode($_POST);
+        file_put_contents('wx.log',$data,FILE_APPEND);
+
     }
 }

@@ -35,7 +35,7 @@ Route::middleware([])->group(function(){
 
 
 //微信接入
-Route::get('/wx','Weixin\WxController@check');    //微信接入
+Route::any('/wx','Weixin\WxController@check');    //微信接入
 
 // 自动上线
 Route::post('/gitpull','Git\IndexController@index');    // test 项目自动上线
