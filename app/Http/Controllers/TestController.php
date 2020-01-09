@@ -85,9 +85,19 @@ class TestController extends Controller
                     "key"   => "1907weixin"
                 ],
                 [
-                    "type"  => "click",
-                    "name"  => "BBBB",
-                    "key"   => "1907weixin02"
+                    "name"  => "二级菜单",
+                    "sub_button"    => [
+                        [
+                            "type"  => "scancode_push",
+                            "name"  => "扫一扫",
+                            "key"   => "scan111"
+                        ],
+                        [
+                            "type"  => "pic_sysphoto",
+                            "name"  => "拍照",
+                            "key"   => "photo111"
+                        ]
+                    ]
                 ],
             ]
         ];
@@ -101,7 +111,7 @@ class TestController extends Controller
     {
         $ch = curl_init();
 
-        $data_string = json_encode($menu);     //要发送的数据
+        $data_string = json_encode($menu,JSON_UNESCAPED_UNICODE);     //要发送的数据
 
         // 设置参数
         curl_setopt($ch, CURLOPT_URL, $url);
