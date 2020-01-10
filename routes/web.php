@@ -46,5 +46,9 @@ Route::get('/wx/token','TestController@getAccessToken');    //获取微信access
 Route::get('/wx/u','TestController@getUserInfo');    //获取微信用户基本信息
 Route::get('/wx/menu','TestController@createMenu');    //创建菜单
 
+Route::get('/wx/sendmsg','Weixin\WxController@sendAllByOpenId');    //根据openid群发
+
+
+
 
 
