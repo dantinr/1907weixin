@@ -182,6 +182,9 @@ echo '<hr>';
         {
             $key = 'h:user_info:'.$v;
             $u = Redis::hGetAll($key);
+            if(empty($u)){
+                continue;
+            }
             //echo '<pre>';print_r($u);echo '</pre>';
             echo " <img src='".$u['headimgurl']."'> ";
         }
