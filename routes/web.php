@@ -49,6 +49,11 @@ Route::get('/wx/menu','TestController@createMenu');    //创建菜单
 Route::get('/wx/sendmsg','Weixin\WxController@sendAllByOpenId');    //根据openid群发
 
 
+// 微信网页授权
+Route::get('/wx/test','Weixin\WxController@test');      // 测试
+Route::get('/wx/auth','Weixin\WxController@auth');      // 接收 code
+
+
 
 
 

@@ -13,7 +13,7 @@ class WxController extends Controller
 
     public function __construct()
     {
-        $this->access_token = WeiXinModel::getAccessToken();
+        //$this->access_token = WeiXinModel::getAccessToken();
     }
 
     public function check()
@@ -129,5 +129,27 @@ class WxController extends Controller
             echo "发送成功";
         }
 
+    }
+
+    public function test()
+    {
+        $appid = env('WX_APPID');
+        $redirect_uri = urlencode(env('WX_AUTH_REDIRECT_URI'));
+        $url = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid='.$appid.'&redirect_uri='.$redirect_uri.'&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect';
+        echo $url;
+    }
+
+    /**
+     * 接收网页授权code
+     */
+    public function auth()
+    {
+        // 接收 code
+        $code = $_GET['code'];
+        //换取access_token
+        $url = 'https://api.weixin.qq.com/sns/oauth2/access_token?appid='.env('WX_APPID').'&secret='.env('WX_APPSEC').'&code='.$code.'&grant_type=authorization_code';
+        $json_data = file_get_contents($url);
+        $arr = json_decode($json_data,true);
+        echo '<pre>';print_r($arr);echo '</pre>';
     }
 }
