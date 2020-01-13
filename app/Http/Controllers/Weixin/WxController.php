@@ -173,16 +173,17 @@ class WxController extends Controller
         $redis_key = 'checkin:'.date('Y-m-d');
         Redis::Zadd($redis_key,time(),$user_info_arr['openid']);  //将openid加入有序集合
         echo $user_info_arr['nickname'] . "签到成功" . "签到时间： ".date("Y-m-d H:i:s");
-
+echo '<hr>';
         $user_list = Redis::zrange($redis_key,0,-1);
-        echo '<hr>';
-        echo '<pre>';print_r($user_list);echo '</pre>';
+        //echo '<hr>';
+        //echo '<pre>';print_r($user_list);echo '</pre>';
 
         foreach ($user_list as $k=>$v)
         {
             $key = 'h:user_info:'.$v;
             $u = Redis::hGetAll($key);
-            echo '<pre>';print_r($u);echo '</pre>';
+            //echo '<pre>';print_r($u);echo '</pre>';
+            echo " <img src='".$u['headimgurl']."'> ";
         }
 
 
