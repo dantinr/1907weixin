@@ -166,7 +166,11 @@ class WxController extends Controller
         //实现签到功能 记录用户签到
         $redis_key = 'checkin:'.date('Y-m-d');
         Redis::Zadd($redis_key,time(),$user_info_arr['openid']);  //将openid加入有序集合
-        echo $user_info_arr['nickname'] . "签到成功";
+        echo $user_info_arr['nickname'] . "签到成功" . "签到时间： ".date("Y-m-d H:i:s");
+
+        $user_list = Redis::zrange($redis_key,0,-1);
+        echo '<hr>';
+        echo '<pre>';print_r($user_list);echo '</pre>';
 
 
     }
