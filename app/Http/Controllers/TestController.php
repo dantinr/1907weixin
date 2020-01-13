@@ -80,25 +80,25 @@ class TestController extends Controller
         $menu = [
             "button"    => [
                 [
-                    "type"  => "click",
-                    "name"  => "AAAA",
-                    "key"   => "1907weixin"
+                    "type"  => "view",
+                    "name"  => "签到",
+                    "url"   => "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx86737d80f8dac5c9&redirect_uri=http%3A%2F%2F1907wx.comcto.com%2Fwx%2Fauth&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect"
                 ],
-                [
-                    "name"  => "二级菜单",
-                    "sub_button"    => [
-                        [
-                            "type"  => "scancode_push",
-                            "name"  => "扫一扫",
-                            "key"   => "scan111"
-                        ],
-                        [
-                            "type"  => "pic_sysphoto",
-                            "name"  => "拍照",
-                            "key"   => "photo111"
-                        ]
-                    ]
-                ],
+//                [
+//                    "name"  => "二级菜单",
+//                    "sub_button"    => [
+//                        [
+//                            "type"  => "scancode_push",
+//                            "name"  => "扫一扫",
+//                            "key"   => "scan111"
+//                        ],
+//                        [
+//                            "type"  => "pic_sysphoto",
+//                            "name"  => "拍照",
+//                            "key"   => "photo111"
+//                        ]
+//                    ]
+//                ],
             ]
         ];
 

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Weixin;
 use App\Http\Controllers\Controller;
 use App\Model\WeiXinModel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redis;
 
 class WxController extends Controller
 {
@@ -133,6 +134,8 @@ class WxController extends Controller
 
     public function test()
     {
+        $redis_key = 'checkin:'.date('Y-m-d');
+        echo $redis_key;die;
         $appid = env('WX_APPID');
         $redirect_uri = urlencode(env('WX_AUTH_REDIRECT_URI'));
         $url = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid='.$appid.'&redirect_uri='.$redirect_uri.'&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect';
@@ -158,6 +161,12 @@ class WxController extends Controller
         $json_user_info = file_get_contents($url);
         $user_info_arr = json_decode($json_user_info,true);
         echo '<pre>';print_r($user_info_arr);echo '</pre>';
+
+
+        //实现签到功能 记录用户签到
+        $redis_key = 'checkin:'.date('Y-m-d');
+        Redis::Zadd($redis_key,time(),$user_info_arr['openid']);  //将openid加入有序集合
+        echo $user_info_arr['nickname'] . "签到成功";
 
 
     }
