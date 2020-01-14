@@ -47,13 +47,40 @@ class WxController extends Controller
 
         $openid = $xml_obj->FromUserName;       // 取openid
         $msg_type = $xml_obj->MsgType;          // 消息类型
-        $media_id = $xml_obj->MediaId;           // MediaId
+        $media_id = $xml_obj->MediaId;           // MediaId\
+        $from_user = $xml_obj->ToUserName;      // 公众号ID
 
 
         if ($msg_type == 'image')          //  图片
         {
             // 下载图片
-            $this->downloadImg($media_id);
+            //$this->downloadImg($media_id);
+
+
+            //随机回复图片
+            $imgs = [
+                "wT9i0u8dPu6TQrdPRvbF08tAFzBizZ_PBTS9aycUIk80z_QURYMKAkeT5XIYf3Ak",
+                "ol96Uexm2AFhMawLG999PcTd6-XU4KFQq7nAPFHBbLLGHxIx6BTfIbO0-mCAeqns",
+                "kxSNJtm6e3rszYThL5EldYVvRaRU9H5DgvP9NyZNw5arwKgeftjv_p3XfMNVVvh5",
+                "CZxjQk-jR_yKqLSzrabr5ARnHg6dljw5krYKSmYTPNBHqj9L25Wmvx_KFd2SFh4Z"
+            ];
+
+            //随机数组
+            $i = array_rand($imgs);
+            $media_id = $imgs[$i];
+
+            // 回复用户图片信息
+            $response_xml = '<xml>
+  <ToUserName><![CDATA['.$openid.']]></ToUserName>
+  <FromUserName><![CDATA['.$from_user.']]></FromUserName>
+  <CreateTime>'.time().'</CreateTime>
+  <MsgType><![CDATA[image]]></MsgType>
+  <Image>
+    <MediaId><![CDATA['.$media_id.']]></MediaId>
+  </Image>
+</xml>
+';
+            echo $response_xml;
 
         } elseif ($msg_type == 'video')        // 视频
         {

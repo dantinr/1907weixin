@@ -132,6 +132,38 @@ class TestController extends Controller
 
 
 
+    public function postman()
+    {
+
+        //随机回复图片
+        $imgs = [
+            "wT9i0u8dPu6TQrdPRvbF08tAFzBizZ_PBTS9aycUIk80z_QURYMKAkeT5XIYf3Ak",
+            "ol96Uexm2AFhMawLG999PcTd6-XU4KFQq7nAPFHBbLLGHxIx6BTfIbO0-mCAeqns",
+            "kxSNJtm6e3rszYThL5EldYVvRaRU9H5DgvP9NyZNw5arwKgeftjv_p3XfMNVVvh5",
+            "CZxjQk-jR_yKqLSzrabr5ARnHg6dljw5krYKSmYTPNBHqj9L25Wmvx_KFd2SFh4Z"
+        ];
+
+        echo '<pre>';print_r($imgs);echo '</pre>';
+        //随机数组
+        $i = array_rand($imgs);
+        echo 'i: '.$i;echo '</br>';
+        echo $imgs[$i];die;
+
+
+        //echo '<pre>';print_r($_POST);echo '</pre>'; //可以接收 form-data x-www-form-urlencoded
+        $data = file_get_contents("php://input");   // 接收 raw 数据  json 或 xml
+        echo $data;
+        //$data = json_decode($json);     // 将 json字符串转为 php对象
+        //$data = json_decode($data,true);     // 将 json字符串转为 php对象
+
+
+        $xml_data = simplexml_load_string($data);
+        echo '<pre>';print_r($xml_data);echo '</pre>';
+
+        echo $xml_data->CreateTime;echo '</br>';
+        echo $xml_data->MsgId;
+
+    }
 
 
 }

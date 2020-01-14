@@ -13,6 +13,15 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/info',function (){
+    phpinfo();
+});
+
+
+Route::any('/test','TestController@postman');       //postman调试
+
+
 //微信开发者配置服务器
 Route::any('/wechat/index', 'WechatController@index');
 Route::any('admin_login', 'Admin\LoginController@login');
