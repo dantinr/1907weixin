@@ -81,7 +81,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    1907WX
+                    weixin-1906
                 </div>
 
                 <div class="links">
